@@ -1,13 +1,14 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 4000;
-app.use(express.json());
-require("dotenv").config();
-const connectDB = require("./DB/connection");
-const httpStatusText = require("./utils/httpStatustext");
-connectDB();
-app.all("*", (req, res) =>
-  res.status(400).json({ status: httpStatusText.ERROR, message: "NOT FOUND" })
-);
+const path = require ('path')
+const url = require ('url')
+const dotenv = require('dotenv')
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//set directory dirname 
+//const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+dotenv.config({ path: path.join(__dirname, './config/.env') })
+const express = require ('express')
+const initApp = require ('./src/index.router.js')
+const app = express()
+// setup port and the baseUrl
+const port = process.env.PORT || 5000
+initApp(app ,express)
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
