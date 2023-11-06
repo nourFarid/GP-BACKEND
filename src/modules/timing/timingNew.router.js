@@ -10,6 +10,7 @@ const {
   getDateMales,
   updateDateMales,
   deleteDateMales,
+  // addToAndFromDateFemalesTestNewThing,
 } = require("./controller/timingNew");
 
 router.post(
@@ -18,6 +19,12 @@ router.post(
 
   addToAndFromDateFemales
 );
+// router.post(
+//   "/addNewFemales",
+//   // auth.auth([auth.roles.admin]),
+
+//   addToAndFromDateFemalesTestNewThing
+// );
 router.get("/getNewFemales", auth.auth([auth.roles.admin]), getDateFemales);
 router.put(
   "/updateNewFemales/:id",

@@ -9,12 +9,22 @@ const addToAndFromDateFemales = errorHandling.asyncHandler(
     console.log(to, from);
     const toDate = new Date(to);
     const fromDate = new Date(from);
+    const formatToDate = new Intl.DateTimeFormat("en-us", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    const formatFromDate = new Intl.DateTimeFormat("en-us", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
 
     console.log(toDate, fromDate);
 
     const toFromDate = await TimingNewFemalesSchema.create({
-      to: toDate,
-      from: fromDate,
+      to: formatToDate.format(toDate),
+      from: formatFromDate.format(fromDate),
     });
 
     return res
@@ -22,6 +32,41 @@ const addToAndFromDateFemales = errorHandling.asyncHandler(
       .json({ status: httpStatusText.SUCCESS, data: { toFromDate } });
   }
 );
+// const addToAndFromDateFemalesTestNewThing = errorHandling.asyncHandler(
+//   async (req, res, next) => {
+//     const { to, from } = req.body;
+//     console.log(to, from);
+//     const toDate = new Date(to);
+//     const fromDate = new Date(from);
+//     const formatToDate = new Intl.DateTimeFormat("en-us", {
+//       day: "2-digit",
+//       month: "2-digit",
+//       year: "numeric",
+//     });
+//     const formatFromDate = new Intl.DateTimeFormat("en-us", {
+//       day: "2-digit",
+//       month: "2-digit",
+//       year: "numeric",
+//     });
+
+//     console.log(toDate, fromDate);
+//     console.log(
+//       "THE FORMATTED DATE IS:: " +
+//         formatToDate.format(toDate) +
+//         " " +
+//         formatFromDate.format(fromDate)
+//     );
+
+//     const toFromDate = await TimingNewFemalesSchema.create({
+//       to: formatToDate.format(toDate),
+//       from: formatFromDate.format(fromDate),
+//     });
+
+//     return res
+//       .status(201)
+//       .json({ status: httpStatusText.SUCCESS, data: { toFromDate } });
+//   }
+// );
 const getDateFemales = errorHandling.asyncHandler(async (req, res, next) => {
   const date = await TimingNewFemalesSchema.find();
 
@@ -37,11 +82,24 @@ const updateDateFemales = errorHandling.asyncHandler(async (req, res, next) => {
   const fromDate = new Date(from);
 
   console.log(toDate, fromDate);
+  const formatToDate = new Intl.DateTimeFormat("en-us", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const formatFromDate = new Intl.DateTimeFormat("en-us", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   const updatedDate = await TimingNewFemalesSchema.findByIdAndUpdate(
     dateId,
     {
-      $set: { to: toDate, from: fromDate },
+      $set: {
+        to: formatToDate.format(toDate),
+        from: formatFromDate.format(fromDate),
+      },
     },
     { new: true }
   );
@@ -66,10 +124,19 @@ const addToAndFromDateMales = errorHandling.asyncHandler(
     const { to, from } = req.body;
     const toDate = new Date(to);
     const fromDate = new Date(from);
-
+    const formatToDate = new Intl.DateTimeFormat("en-us", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    const formatFromDate = new Intl.DateTimeFormat("en-us", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
     const toFromDate = await TimingNewMalesSchema.create({
-      to: toDate,
-      from: fromDate,
+      to: formatToDate.format(toDate),
+      from: formatFromDate.format(fromDate),
     });
 
     return res
@@ -91,11 +158,24 @@ const updateDateMales = errorHandling.asyncHandler(async (req, res, next) => {
   const toDate = new Date(to);
   const fromDate = new Date(from);
   console.log(toDate, fromDate);
+  const formatToDate = new Intl.DateTimeFormat("en-us", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const formatFromDate = new Intl.DateTimeFormat("en-us", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   const updatedDate = await TimingNewMalesSchema.findByIdAndUpdate(
     dateId,
     {
-      $set: { to: toDate, from: fromDate },
+      $set: {
+        to: formatToDate.format(toDate),
+        from: formatFromDate.format(fromDate),
+      },
     },
     { new: true }
   );
@@ -123,4 +203,5 @@ module.exports = {
   getDateMales,
   updateDateMales,
   deleteDateMales,
+  // addToAndFromDateFemalesTestNewThing,
 };
