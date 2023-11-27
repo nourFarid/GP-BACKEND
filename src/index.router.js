@@ -13,6 +13,7 @@ const registrationNewEgy = require("./modules/registrationNewEgy/registration.ro
 const registrationNewExp = require("./modules/registrationNewExp/registration.router.js");
 const registrationOldEgy = require("./modules/registrationOldEgy/registration.router.js");
 const registrationOldExp = require("./modules/registrationOldExp/registration.router.js");
+const classifyStudents = require("./modules/classificationOfStudents/classification.router.js");
 
 const initApp = (app, express) => {
   //convert Buffer Data
@@ -31,6 +32,7 @@ const initApp = (app, express) => {
   app.use("/registration", registrationNewExp);
   app.use("/registration", registrationOldEgy);
   app.use("/registration", registrationOldExp);
+  app.use("/classifyStudents", classifyStudents);
 
   app.all("*", (req, res, next) => {
     res.send("In-valid Routing Plz check url  or  method");
