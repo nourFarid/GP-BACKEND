@@ -9,10 +9,8 @@ const roomsRouter = require("./modules/rooms/rooms.router.js");
 const floorsRouter = require("./modules/floors/floors.router.js");
 const buildingsRouter = require("./modules/Buildings/buildings.router.js");
 const universityCityRouter = require("./modules/universityCity/universityCity.router.js");
-const registrationNewEgy = require("./modules/registrationNewEgy/registration.router.js");
-const registrationNewExp = require("./modules/registrationNewExp/registration.router.js");
-const registrationOldEgy = require("./modules/registrationOldEgy/registration.router.js");
-const registrationOldExp = require("./modules/registrationOldExp/registration.router.js");
+const registration = require("./modules/registration/registration.router");
+
 const classifyStudents = require("./modules/classificationOfStudents/classification.router.js");
 const InquiryAboutAdmission = require("./modules/InquiryAboutAdmission/InquiryAboutAdmissionRouter.js");
 
@@ -29,10 +27,8 @@ const initApp = (app, express) => {
   app.use(`/floors`, floorsRouter);
   app.use(`/buildings`, buildingsRouter);
   app.use(`/universityCity`, universityCityRouter);
-  app.use("/registration", registrationNewEgy);
-  app.use("/registration", registrationNewExp);
-  app.use("/registration", registrationOldEgy);
-  app.use("/registration", registrationOldExp);
+  app.use("/registration", registration);
+
   app.use("/classifyStudents", classifyStudents);
   app.use(`/inquiry`, InquiryAboutAdmission);
 
