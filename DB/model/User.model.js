@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
     oldExpartriates:{
       type:Boolean,
       default: false,
+
     },
     nationalID: {
       type: String,
@@ -62,7 +63,7 @@ const userSchema = new mongoose.Schema(
     },
 
     residence: {
-      //محل اقامه
+      //محل الاقامه
       type: String,
     },
 
