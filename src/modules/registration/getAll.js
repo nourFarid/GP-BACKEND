@@ -4,21 +4,17 @@
 // //3.this excel sheet should be sent to Helwan university to be checked whether the data is correct or not
 // // ... (your existing imports)
 const errorHandling = require("../../utils/errorHandling");
-const NewEgy = require("../../../DB/model/newComers/registrationEgyption.js");
-const NewExp = require("../../../DB/model/newComers/registrationExpatriates.js");
-const OldEgy = require("../../../DB/model/oldStudent/registrationEgyption.js");
-const OldExp = require("../../../DB/model/oldStudent/registrationExpartriates.js");
+const Egyptions = require("../../../DB/model/User.model.js");
+const Expartriates = require("../../../DB/model/User.model.js");
 const ExcelJS = require("exceljs");
 const fs = require("fs").promises;
 // // ... (your existing imports)
 // ... (your existing imports)
 
 const getAllRegistered = errorHandling.asyncHandler(async (req, res, next) => {
-  const expNew = await NewExp.find().lean();
-  const egyNew = await NewEgy.find().lean();
-  const egyOld = await OldEgy.find().lean();
-  const expOld = await OldExp.find().lean();
-  const all = expNew.concat(egyNew).concat(egyOld).concat(expOld);
+  const exp = await Expartriates.find().lean();
+  const egy = await Egyptions.find().lean();
+  const all = exp.concat(egy);
 
   // Check if the Excel file already exists
   const filePath = "output.xlsx";

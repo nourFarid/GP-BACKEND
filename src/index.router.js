@@ -10,7 +10,6 @@ const floorsRouter = require("./modules/floors/floors.router.js");
 const buildingsRouter = require("./modules/Buildings/buildings.router.js");
 const universityCityRouter = require("./modules/universityCity/universityCity.router.js");
 const registration = require("./modules/registration/registration.router");
-
 const classifyStudents = require("./modules/classificationOfStudents/classification.router.js");
 const InquiryAboutAdmission = require("./modules/InquiryAboutAdmission/InquiryAboutAdmissionRouter.js");
 
@@ -28,7 +27,6 @@ const initApp = (app, express) => {
   app.use(`/buildings`, buildingsRouter);
   app.use(`/universityCity`, universityCityRouter);
   app.use("/registration", registration);
-
   app.use("/classifyStudents", classifyStudents);
   app.use(`/inquiry`, InquiryAboutAdmission);
 

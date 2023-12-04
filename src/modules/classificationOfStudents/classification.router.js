@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { classifyOldStudents } = require("./controller/classificationOfOld");
-const { classifyNewStudents } = require("./controller/classificationOfNew");
-router.get("/classifyOld", classifyOldStudents);
-router.get("/classifyNew", classifyNewStudents);
+const { classifyExpStudents } = require("./controller/classificationOfExp");
+const { classifyEgyStudents } = require("./controller/classificationOfEgy");
+router.get("/classifyExp", classifyExpStudents);
+router.get("/classifyEgy", classifyEgyStudents);
 
 module.exports = router;
