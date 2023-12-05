@@ -1,24 +1,10 @@
-const registrationSchemaForOldExp = require("../../../../../DB/model/oldStudent/registrationExpartriates.js");
+const registrationSchemaForExp = require("../../../../../DB/model/User.model.js");
 const errorHandling = require("../../../../utils/errorHandling.js");
 const httpStatusText = require("../../../../utils/httpStatusText.js");
 const hashAndCompare = require("../../../../utils/HashAndCompare.js");
 
-//const User = mongoose.model('User', registrationSchema);
 
-//app.use(bodyParser.json());
-
-//for hashing the password befor saving it in database
-// registrationSchema.pre('save', async function(next) {
-//     const user = this;
-//     if (!user.isModified('password')) return next();
-
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(user.password, salt);
-//     user.password = hashedPassword;
-//     next();
-//   });
-
-const registrationOldExp = errorHandling.asyncHandler(
+const registrationExp = errorHandling.asyncHandler(
   async (req, res, next) => {
     const { password, confirmPassword, birthDate, ...userData } = req.body;
     console.log(birthDate);
@@ -39,7 +25,7 @@ const registrationOldExp = errorHandling.asyncHandler(
     }
 
     // Create a new user instance with the hashed password
-    const newUser = new registrationSchemaForOldExp({
+    const newUser = new registrationSchemaForExp({
       ...userData,
       password,
       birthDate: formatToDate.format(changDate),
@@ -55,7 +41,26 @@ const registrationOldExp = errorHandling.asyncHandler(
   }
 );
 
-module.exports = { registrationOldExp };
+module.exports = { registrationExp };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const addStudent= errorHandling.asyncHandler(async(req,res,next)=>{
 //     const{contextOfRegistration}= req.body
@@ -80,4 +85,19 @@ module.exports = { registrationOldExp };
 
 //   app.listen(PORT, () => {
 //     console.log(`Server is running on http://localhost:${PORT}`);
+//   });
+
+//const User = mongoose.model('User', registrationSchema);
+
+//app.use(bodyParser.json());
+
+//for hashing the password befor saving it in database
+// registrationSchema.pre('save', async function(next) {
+//     const user = this;
+//     if (!user.isModified('password')) return next();
+
+//     const salt = await bcrypt.genSalt(10);
+//     const hashedPassword = await bcrypt.hash(user.password, salt);
+//     user.password = hashedPassword;
+//     next();
 //   });

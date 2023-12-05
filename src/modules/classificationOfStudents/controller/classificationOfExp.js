@@ -1,20 +1,20 @@
-const NewEgy = require("../../../../DB/model/newComers/registrationEgyption.js");
-const NewExp = require("../../../../DB/model/newComers/registrationExpatriates.js");
-const oldExp = require("../../../../DB/model/oldStudent/registrationExpartriates.js");
-const oldEgy = require("../../../../DB/model/oldStudent/registrationEgyption.js");
+// const NewEgy = require("../../../../DB/model/newComers/registrationEgyption.js");
+// const NewExp = require("../../../../DB/model/newComers/registrationExpatriates.js");
+const Expartriates = require("../../../../DB/model/User.model.js");
+// const oldEgy = require("../../../../DB/model/oldStudent/registrationEgyption.js");
 const errorHandling = require("../../../utils/errorHandling.js");
 const httpStatusText = require("../../../utils/httpStatusText.js");
 const {
   getCoordinatesAndCalculateDistance,
 } = require("../../../utils/getCoordinates.js");
 
-const classifyOldStudents = errorHandling.asyncHandler(
+const classifyExpStudents = errorHandling.asyncHandler(
   async (req, res, next) => {
-    const egyOld = await oldEgy.find().lean();
-    const expOld = await oldExp.find().lean();
+    // const egyOld = await oldEgy.find().lean();
+    const exp = await Expartriates.find().lean();
     // const expNew = await NewExp.find().lean();
     // const egyNew = await NewEgy.find().lean();
-    const allOld = egyOld.concat(expOld);
+    const allOld = exp;
     // .concat(expNew).concat(egyNew);
 
     // Calculate distances and ages for all students
@@ -52,4 +52,4 @@ const classifyOldStudents = errorHandling.asyncHandler(
   }
 );
 
-module.exports = { classifyOldStudents };
+module.exports = { classifyExpStudents };

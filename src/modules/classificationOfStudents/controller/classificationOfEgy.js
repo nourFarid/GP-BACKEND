@@ -1,4 +1,4 @@
-// const NewEgy = require("../../../../DB/model/newComers/registrationEgyption.js");
+// const Egyptions = require("../../../../DB/model/newComers/registrationEgyption.js");
 // const NewExp = require("../../../../DB/model/newComers/registrationExpatriates.js");
 
 // const errorHandling = require("../../../utils/errorHandling.js");
@@ -10,8 +10,8 @@
 // const classifyStudents = errorHandling.asyncHandler(async (req, res, next) => {
 
 //   const expNew = await NewExp.find().lean();
-//   const egyNew = await NewEgy.find().lean();
-//   const allOld = expNew.concat(egyNew);
+//   const egy = await Egyptions.find().lean();
+//   const allOld = expNew.concat(egy);
 
 //   // Calculate distances and ages for all students
 //   const studentsWithDistancesAndAges = await Promise.all(
@@ -48,8 +48,8 @@
 // });
 
 // module.exports = { classifyStudents };
-const NewEgy = require("../../../../DB/model/newComers/registrationEgyption.js");
-const NewExp = require("../../../../DB/model/newComers/registrationExpatriates.js");
+const Egyptions = require("../../../../DB/model/User.model.js");
+// const NewExp = require("../../../../DB/model/newComers/registrationExpatriates.js");
 
 const errorHandling = require("../../../utils/errorHandling.js");
 const httpStatusText = require("../../../utils/httpStatusText.js");
@@ -57,11 +57,11 @@ const {
   getCoordinatesAndCalculateDistance,
 } = require("../../../utils/getCoordinates.js");
 
-const classifyNewStudents = errorHandling.asyncHandler(
+const classifyEgyStudents = errorHandling.asyncHandler(
   async (req, res, next) => {
-    const expNew = await NewExp.find().lean();
-    const egyNew = await NewEgy.find().lean();
-    const allOld = expNew.concat(egyNew);
+    // const expNew = await NewExp.find().lean();
+    const egy = await Egyptions.find().lean();
+    const allOld = egy;
 
     // Calculate distances and ages for all students
     const studentsWithDistancesAndAges = await Promise.all(
@@ -96,4 +96,4 @@ const classifyNewStudents = errorHandling.asyncHandler(
   }
 );
 
-module.exports = { classifyNewStudents };
+module.exports = { classifyEgyStudents };
