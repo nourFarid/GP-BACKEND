@@ -1,5 +1,10 @@
+
+const { boolean } = require("joi")
+const mongoose = require ("mongoose")
+
 const mongoose = require("mongoose");
 const validator = require("validator");
+
 
 const userSchema = new mongoose.Schema(
   {
@@ -47,6 +52,22 @@ const userSchema = new mongoose.Schema(
       //   message: 'Invalid date format. Please use the ISO 8601 format (YYYY-MM-DD)',
       // },
     },
+
+    NationalId: {
+        type: Number,
+        required: [true, 'NationalId is required'],
+        unique: [true, 'NationalId must be unique value'],
+        min: [14 , 'National Id must be at leadt 14 characters'],
+    },
+    gender:{
+      type:String,
+      enum:['male' , 'Male' , 'female' , 'Female'], lowercase: true},
+
+    email: { 
+        type: String,
+        unique: [true, 'email must be unique value'],
+        required: [true, 'userName is required'],
+
 
     placeOfBirth: {
       type: String,
@@ -184,6 +205,7 @@ const userSchema = new mongoose.Schema(
     },
     ThefamilyIsOutside: {
       type: Boolean,
+
     },
     password: {
       type: String,
@@ -226,6 +248,17 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    buildingId:{ type: mongoose.ObjectId, ref: 'Buildings' },
+    floorId:{ type: mongoose.ObjectId, ref: 'Floor'},
+    roomId:{ type: mongoose.ObjectId, ref: 'Rooms'},
+    housingDate :{type: Date},
+    evacuationDate :{type: Date}, // إخلاء السكن
+    evacuationType : {type : String, enum:['نصف العام الدراسي' , 'نهاية العام الدراسي']},
+    evacuationReason :{type: String, enum :['إخلاء اجازات' , 'إخلاء انتقالات']},
+    blocked: { type: Boolean, default: false},
+    expulsionStudent:{ type: Boolean,default:false},
+    penalty:{type: Boolean,default:false},
+
     blocked: {
       type: Boolean,
       default: false,
@@ -240,6 +273,9 @@ const userSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
+
+
+module.exports = mongoose.model('User', userSchema)
 
 // userName: {
 //   type: String,
@@ -266,3 +302,4 @@ module.exports = mongoose.model("User", userSchema);
 // phone: {
 //   type: String,
 // },
+

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const universityCitySchema = new mongoose.Schema({
-  Name : {type: String , required:true },
+  Name : {type: String , required:true , unique: [true , "Please enter another city name"] },
   createdBy: { type: mongoose.ObjectId, ref: 'Admin' },
   createdAt:{type: Date, default: Date.now()}
 }, {

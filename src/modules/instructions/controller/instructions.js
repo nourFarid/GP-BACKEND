@@ -19,7 +19,7 @@ const addInstructions = errorHandling.asyncHandler(async(req,res,next)=>{
 const getInstructions = errorHandling.asyncHandler( async(req,res,next)=>{
     const instructions = await instructionsModel.find({}, {"__v":false})
     if(!instructions){
-      return res.json("No Instructions Found")
+      return res.status(404).json({status : httpStatusText.FAIL , data : {msg : "no instructions found! please try again later"}});
     }
     return res.status(200).json({status : httpStatusText.SUCCESS , data : {instructions}})
 })
@@ -47,7 +47,7 @@ const deleteInstruction = errorHandling.asyncHandler(async(req,res,next)=>{
 
      const deleteInstructions = await instructionsModel.findOne({_id:instructionsId})
      if (!deleteInstructions) {
-      return res.status(404).json({status: httpStatusText.ERROR , message : 'Instruction not found'})
+      return res.status(400).json({status: httpStatusText.ERROR , message : 'Instruction not found'})
        }
       
     await instructionsModel.deleteOne({_id: instructionsId})

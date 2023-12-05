@@ -6,6 +6,8 @@ const FloorSchema = new mongoose.Schema({
   createdBy: { type: mongoose.ObjectId, ref: 'Admin' },
   createdAt:{type: Date, default: Date.now()}
 }, {
+//  strictPopulate: false ,
+
   timestamps: true,
   toJSON :{virtuals:true},
   toObject:{virtuals : true}
