@@ -7,19 +7,21 @@ router.post('/',
     auth.auth([auth.roles.admin]),
      roomController.addRoom)
 
-router.get('/',auth.auth([auth.roles.admin])
-, roomController.getAllRooms)
+router.get('/',
+  auth.auth([auth.roles.admin]),
+  roomController.getAllRooms)
 
-router.get('/:roomId',auth.auth([auth.roles.admin])
+router.get('/:roomId',
+  auth.auth([auth.roles.admin])
 , roomController.getRoom)
 
 router.put('/:roomId', 
-auth.auth([auth.roles.admin]),
-     roomController.updateRoom)
+  auth.auth([auth.roles.admin]),
+  roomController.updateRoom)
 
  router.delete('/:roomId', 
- auth.auth([auth.roles.admin]),
-     roomController.deleteRoom)
+    auth.auth([auth.roles.admin]),
+    roomController.deleteRoom)
 
 
 module.exports = router
